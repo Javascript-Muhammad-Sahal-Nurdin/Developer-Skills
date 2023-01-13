@@ -10,13 +10,13 @@
 // console.log();
 // console.log();
 
-// PROBLEM
+// PROBLEM 1
 // We work for a company building a smart home thermometer. Our most recent task is this : "Given an array of temperatures of one day, calculate the temparature amplitude. Keep in mind that sometimes there might be a sensor error."
 
-const temperature = [3, -2, -6, -1, 'error', 9, 13, 17, 15, 14, 9, 5];
+const temperatures = [3, -2, -6, -1, 'error', 9, 13, 17, 15, 14, 9, 5];
 // 1) Understanding the problem
 // - What is temp amplitude? Answer: difference between highest and lowest temp
-// - How to compute maz and min temperature
+// - How to compute max and min temperature
 // - What's sensor error? And what to do?
 
 // 2) Breaking up into sub-problem
@@ -30,16 +30,30 @@ const calcTempAmplitude = function (temps) {
   let min = temps[0];
   for (let i = 0; i < temps.length; i++) {
     const curTemp = temps[i];
+    if (typeof curTemp !== 'number') continue;
 
     if (curTemp > max) max = curTemp;
     if (curTemp < min) min = curTemp;
   }
-  console.log(max);
+  console.log(max, min);
+  return max - min;
 };
 
-calcTempAmplitude([3, 7, 4]);
+// calcTempAmplitude([3, 7, 4, 8]);
+const amplitude = calcTempAmplitude(temperatures);
+console.log(amplitude);
 
 // Penjelasan code:
 // pertama temps[i] akan membaca indeks pertama yakni 3 dengan max 3 juga untuk sementara
 // kemudian di increment menjadi indeks ke dua di mana temps[i] adalah 7 dan max adalah 3 di sini 7 beanr lebih besar dari pada 3 maka max sementara sekarang adalah 7
-// Kemudian pada
+// Kemudian pada indeks ke 3 maka perbandingannya adalah antara angka 4 dengan 7
+// Sama halnya dengan max, min melakukan dengan cara yang sama
+
+// Problem 2
+// Function should now receive 2 arrays of temps
+
+// 1) Understanding the problem
+// - With 2 arrays, should we implement functionally twice? NO! Just merge two arrays.
+
+// 2) Breaking up into sub-problems
+// - Merge 2 arrays
